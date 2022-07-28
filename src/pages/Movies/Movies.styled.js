@@ -116,3 +116,11 @@ export const Error = styled(ErrorMessage)`
     transform: translateX(-50%);
     padding: 0 10px;
 `
+export const FindText = styled.p`
+    font-size: large;
+    margin-bottom: 20px;
+`
+export const FindBlock = styled.div`
+    text-align: center;
+    margin-top: 150px;
+`

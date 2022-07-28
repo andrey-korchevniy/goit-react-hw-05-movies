@@ -1,21 +1,28 @@
-import { Button, ButtonWrapper, Input, SearchForm, FormikWrapper, Error } from './Movies.styled';
-import { Formik } from 'formik';
 import { useState, useEffect } from "react";
 import { getMoviesSearch } from 'api/getMoviesList';
 import { ListOfMovies, MovieItem, Poster, Title } from '../../pages/Home/Home.styled'
-import { Outlet } from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import { useLocation, useSearchParams, Outlet } from "react-router-dom";
+import { SearchBar } from "components/SearchBar/SearchBar";
+import { FindText, FindBlock } from "./Movies.styled";
+import nothing from '../../images/nothing.png';
 
 export const Movies = () => {
+    const [query, setQuery] = useState('');             // a search word or frase
+    const [movies, setMovies] = useState([]);           // API movie list by search frase
+    const [total, setTotal] = useState(-1);             // marker
+    const location = useLocation();                     
+    const [searchParams, setSearchParams] = useSearchParams();
+    const name = searchParams.get("query");
 
-    const [query, setQuery] = useState('');           // a search word or frase
-    const [movies, setMovies] = useState([]);
-    const [total, setTotal] = useState(-1);
-
+    // render a page after return from MovieDetails
+    if (name !== null & name !== query) {
+        setQuery(name)
+    }
     // processing search-btn click
     const onSearch = (data) => {
         if (data.query !== query) {
             setQuery(() => data.query);
+            setSearchParams({ query: data.query })
         }
     }
 
@@ -27,43 +34,36 @@ export const Movies = () => {
             }).catch('error')
     }, [query]);
 
+
+    // render 1 of 3 options by total-value: =(-1) - only searchbar;  >0 - list jf movies; =0 - nothing has been found
     if (total === -1) {
         return (      
-            <Formik
-                initialValues={{ query: '' }}
-                onSubmit={onSearch}>
-                <FormikWrapper>
-                    <SearchForm>
-                        <Input name='query' type="text" autoComplete="off" autoFocus placeholder="Search movies" />
-                        <Error name='query' component='div' />
-                        <ButtonWrapper>
-                            <Button type="submit">Search</Button>
-                        </ButtonWrapper>
-                    </SearchForm>
-                </FormikWrapper>
-            </Formik>
+            <SearchBar onSearch={onSearch} />
         )
 
     } else if (total > 0) {
         return (
-        <ListOfMovies as='main'>
-            {movies.map(({ id, title, poster_path }) => (
-                <MovieItem to={`${id}`} key={id}>
-                    <Poster src={poster_path} alt='movie poster' />
-                    <Title>{title}</Title>
-                </MovieItem>))}
-            <Outlet />
-        </ListOfMovies>
+            <>
+                <SearchBar onSearch={onSearch} />
+                <ListOfMovies as='main'>
+                    {movies.map(({ id, title, poster_path }) => (
+                        <MovieItem to={`${id}`} key={id} state={{ from: location }}>
+                            <Poster src={poster_path} alt='movie poster' />
+                            <Title>{title}</Title>
+                        </MovieItem>))}
+                    <Outlet />
+                </ListOfMovies>
+            </>
         )
     } else {
         return (
-        <ListOfMovies as='main'>
-            {movies.map(({ id, title, poster_path }) => (
-                <MovieItem to={`movies/${id}`} key={id}>
-                    <Poster src={poster_path} alt='movie poster' />
-                    <Title>{title}</Title>
-                </MovieItem>))}
-        </ListOfMovies>
+            <>
+                <SearchBar onSearch={onSearch} />
+                <FindBlock as='main'>
+                <FindText>Nothing was finded :(</FindText>
+                    <img src={nothing} alt='nothing is found'/>
+                </FindBlock>
+            </>
         )
     }
 }
