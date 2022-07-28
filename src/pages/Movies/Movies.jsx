@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { getMoviesSearch } from 'api/getMoviesList';
-import { ListOfMovies, MovieItem, Poster, Title } from '../../pages/Home/Home.styled'
+import { MovieItem, Poster, Title } from '../../pages/Home/Home.styled'
 import { useLocation, useSearchParams, Outlet } from "react-router-dom";
 import { SearchBar } from "components/SearchBar/SearchBar";
-import { FindText, FindBlock } from "./Movies.styled";
+import { FindText, FindBlock, ListOfMovies } from "./Movies.styled";
 import nothing from '../../images/nothing.png';
 
 export const Movies = () => {

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import arrow from 'images/arrow.png';
 import bg from 'images/bg.png';
 import { Form, Field, ErrorMessage } from 'formik';
+import { Box } from 'utils/Box';
 
 export const Button = styled.button`
     position: absolute;
@@ -123,4 +124,13 @@ export const FindText = styled.p`
 export const FindBlock = styled.div`
     text-align: center;
     margin-top: 150px;
+`
+export const ListOfMovies = styled(Box)`
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 150px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 10px;
 `

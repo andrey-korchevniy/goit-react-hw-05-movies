@@ -5,7 +5,7 @@ import { Box } from 'utils/Box';
 export const ListOfMovies = styled(Box)`
     display: flex;
     flex-wrap: wrap;
-    margin-top: 150px;
+    margin-top: 50px;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
