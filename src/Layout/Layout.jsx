@@ -1,7 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import { Header, NavList, Container } from './Layout.styled.js';
+import { Header, NavList, Container, Spinner } from './Layout.styled.js';
 import { Suspense } from "react";
 import { Button } from 'components/Button/Button';
+import { Grid } from 'react-loader-spinner';
 
 export const Layout = () => {
     return (
@@ -12,9 +13,11 @@ export const Layout = () => {
                     <Button path='movies' title='Movies' />
                 </NavList>
             </Header>
-            <Suspense fallback={<div>Loading page...</div>}>
+            <Suspense fallback={<Spinner><Grid color="#0591ba" height={35} width={35} /></Spinner>}>
                 <Outlet />
             </Suspense>
         </Container>
     )
 }
+
+

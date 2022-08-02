@@ -22,3 +22,8 @@ export const NavList = styled.nav`
     margin-block-start: 11px;
     padding-inline-start: 0;
 `
+export const Spinner = styled.div`
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+`
