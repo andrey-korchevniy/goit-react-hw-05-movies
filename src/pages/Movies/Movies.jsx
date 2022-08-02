@@ -6,7 +6,7 @@ import { SearchBar } from "components/SearchBar/SearchBar";
 import { FindText, FindBlock, ListOfMovies } from "./Movies.styled";
 import nothing from '../../images/nothing.png';
 
-export const Movies = () => {
+const Movies = () => {
     const [query, setQuery] = useState('');             // a search word or frase
     const [movies, setMovies] = useState([]);           // API movie list by search frase
     const [total, setTotal] = useState(-1);             // marker
@@ -43,7 +43,7 @@ export const Movies = () => {
 
     } else if (total > 0) {
         return (
-            <>
+            <main>
                 <SearchBar onSearch={onSearch} />
                 <ListOfMovies as='main'>
                     {movies.map(({ id, title, poster_path }) => (
@@ -53,18 +53,20 @@ export const Movies = () => {
                         </MovieItem>))}
                     <Outlet />
                 </ListOfMovies>
-            </>
+            </main>
         )
     } else {
         return (
-            <>
+            <main>
                 <SearchBar onSearch={onSearch} />
                 <FindBlock as='main'>
                 <FindText>Nothing was finded :(</FindText>
                     <img src={nothing} alt='nothing is found'/>
                 </FindBlock>
-            </>
+            </main>
         )
     }
 }
+
+export default Movies;
 

@@ -1,15 +1,8 @@
-import axios from "axios";
-
-const API_KEY = '686ce405e78c10a98219cd1fc59d1c0f';
-const API_URL = 'https://api.themoviedb.org/3/';
+import { apiRequest } from "./api";
 
 // getting list of trending
-export const getMoviesList = async () => {
-    const response = await axios.get(API_URL+'trending/movie/week', {
-        params: {
-            api_key: API_KEY,
-        }
-    });
+export const  getMoviesList = async () => {
+    const response = await apiRequest('trending/movie/week');
     response.data.results.map(movie => movie.poster_path = movie.poster_path !== null ?
         (`https://image.tmdb.org/t/p/w500/` + movie.poster_path) : 'https://filmesiseriale.net/img/noposter.jpg' )
     return response.data.results;
@@ -19,12 +12,7 @@ export const getMoviesList = async () => {
 export const getMoviesSearch = async (query) => {
     if (query !== '') {
         try {
-            const response = await axios.get(API_URL + 'search/movie', {
-                params: {
-                    api_key: API_KEY,
-                    query: query,
-                }
-            });
+            const response = await apiRequest('search/movie', { query: query });
             response.data.results.map(movie => movie.poster_path = movie.poster_path !== null ?
         (`https://image.tmdb.org/t/p/w500/` + movie.poster_path) : 'https://filmesiseriale.net/img/noposter.jpg')
             return response.data;
@@ -38,11 +26,7 @@ export const getMoviesSearch = async (query) => {
 // get an info of one movie
 export const getMovieInfo = async (id) => {
     
-    const response = await axios.get(API_URL+`movie/${id}`, {
-        params: {
-            api_key: API_KEY,
-        }
-    });
+    const response = await apiRequest(`movie/${id}`);
     response.data.poster_path = response.data.poster_path !== null ? (`https://image.tmdb.org/t/p/w500/` + response.data.poster_path) : ('https://filmesiseriale.net/img/noposter.jpg');
     return response.data;
 }
@@ -50,11 +34,7 @@ export const getMovieInfo = async (id) => {
 // get cast
 export const getCast = async (id) => {
 
-    const response = await axios.get(API_URL+`movie/${id}/credits`, {
-        params: {
-            api_key: API_KEY,
-        }
-    });
+    const response = await apiRequest(`movie/${id}/credits`);
     response.data.cast.map(actor => actor.profile_path = actor.profile_path !== null ?
         (`https://image.tmdb.org/t/p/w500` + actor.profile_path) : ('https://png.pngitem.com/pimgs/s/49-498069_talk-about-random-wiki-shy-guy-mario-hd.png'))
     return response.data.cast;
@@ -62,10 +42,6 @@ export const getCast = async (id) => {
 
 // get reviews
 export const getReviews = async (id) => {
-    const response = await axios.get(API_URL+`movie/${id}/reviews`, {
-        params: {
-            api_key: API_KEY,
-        }
-    });
+    const response = await apiRequest(`movie/${id}/reviews`);
     return response.data.results;
 }

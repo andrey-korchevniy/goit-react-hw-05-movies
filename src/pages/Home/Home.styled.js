@@ -15,7 +15,7 @@ export const MovieItem = styled(NavLink)`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: calc((100% - 100px)/10);
+    width: calc((100% - 100px)/5);
     background: none;
     color: black;
     text-align: center;

@@ -3,7 +3,7 @@ import { getMoviesList } from 'api/getMoviesList';
 import { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 
-export const Home = () => {
+const Home = () => {
 
     const [trendingList, setTrendingList] = useState([]);       // API trending list
     const location = useLocation();
@@ -13,15 +13,17 @@ export const Home = () => {
     }, []);
 
     return (
-        <>
+        <main>
             <H1>Trending today</H1>
-            <ListOfMovies as='main'>
+            <ListOfMovies as='div'>
                 {trendingList.map(({ id, title, poster_path }) => (
                     <MovieItem to={`movies/${id}`} key={id} state={{ from: location }}>
                         <Poster src={poster_path} alt='movie poster' />
                         <Title>{title}</Title>
                     </MovieItem>))}
             </ListOfMovies>
-        </>
+        </main>
     )
 }  
+
+export default Home;

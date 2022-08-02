@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { Button, ButtonWrapper, Input, SearchForm, FormikWrapper, Error } from 'pages/Movies/Movies.styled';
+import { Button, ButtonWrapper, Input, SearchForm, FormikWrapper, Error } from './SearchBar.styled';
 import PropTypes from 'prop-types';
 
 export const SearchBar = ({ onSearch }) => {

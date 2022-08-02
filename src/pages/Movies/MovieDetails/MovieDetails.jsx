@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { getMovieInfo } from "api/getMoviesList";
-import { Wrapper, Button, Img, Info, BackLink } from "./MovieDetails.styled";
-import { FaLongArrowAltLeft } from 'react-icons/fa';
+import { Wrapper, Img, Info } from "./MovieDetails.styled";
 import { Outlet, Link, useParams, useLocation } from "react-router-dom";
+import { Button } from "components/Button/Button";
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
 
     const [movieInfo, setMovieInfo] = useState({});         // API movie info 
     const { movieId } = useParams();                        // the movie id
@@ -19,8 +19,8 @@ export const MovieDetails = () => {
 
     if (poster_path !== undefined) {
         return (
-            <>
-                <Button ><BackLink to={backLinkHref} ><FaLongArrowAltLeft /> Go back</BackLink></Button>
+            <main>
+                <Button path={backLinkHref} title={`Go back`} />
                 <Wrapper>
                     <Img src={poster_path} alt='movie poster' />
                     <Info>
@@ -42,7 +42,9 @@ export const MovieDetails = () => {
                 </Info>
                 <hr></hr>
                 <Outlet />
-            </>
+            </main>
         )
     }
 }
+
+export default MovieDetails;

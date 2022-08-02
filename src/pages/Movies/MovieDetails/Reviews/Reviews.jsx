@@ -2,7 +2,7 @@ import { getReviews } from 'api/getMoviesList';
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export const Reviews = () => {
+const Reviews = () => {
     const { movieId } = useParams();
     const [reviews, setReviews] = useState([]);
 
@@ -26,3 +26,5 @@ export const Reviews = () => {
         return <p>We don't have any reviews for this movie</p>
     }
 }
+
+export default Reviews;
