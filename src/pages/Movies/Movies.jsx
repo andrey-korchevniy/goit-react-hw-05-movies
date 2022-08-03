@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
 import { getMoviesSearch } from 'api/getMoviesList';
-import { MovieItem, Poster, Title } from '../../pages/Home/Home.styled'
-import { useLocation, useSearchParams, Outlet } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { SearchBar } from "components/SearchBar/SearchBar";
-import { FindText, FindBlock, ListOfMovies } from "./Movies.styled";
-import nothing from '../../images/nothing.png';
+import { MovieList } from 'components/MovieList/MovieList';
+import { SearchBlock } from "components/SearchBlock/SearchBlock";
 
 const Movies = () => {
-    const [query, setQuery] = useState('');             // a search word or frase
-    const [movies, setMovies] = useState([]);           // API movie list by search frase
-    const [total, setTotal] = useState(-1);             // marker
-    const location = useLocation();                     
+    const [query, setQuery] = useState('');                 // a search word or frase
+    const [movies, setMovies] = useState([]);               // API movie list by search frase
+    const [total, setTotal] = useState(null);               // marker
+    const location = useLocation();
     const [searchParams, setSearchParams] = useSearchParams();
     const name = searchParams.get("query");
 
@@ -34,38 +33,16 @@ const Movies = () => {
             }).catch('error')
     }, [query]);
 
-
-    // render 1 of 3 options by total-value: =(-1) - only searchbar;  >0 - list jf movies; =0 - nothing has been found
-    if (total === -1) {
-        return (      
+    // render 1 of 3 options by total-value: = null - only searchbar;  > 0 - list of movies; = 0 - nothing has been found
+    return (
+        <div>
             <SearchBar onSearch={onSearch} />
-        )
-
-    } else if (total > 0) {
-        return (
-            <main>
-                <SearchBar onSearch={onSearch} />
-                <ListOfMovies as='main'>
-                    {movies.map(({ id, title, poster_path }) => (
-                        <MovieItem to={`${id}`} key={id} state={{ from: location }}>
-                            <Poster src={poster_path} alt='movie poster' />
-                            <Title>{title}</Title>
-                        </MovieItem>))}
-                    <Outlet />
-                </ListOfMovies>
-            </main>
-        )
-    } else {
-        return (
-            <main>
-                <SearchBar onSearch={onSearch} />
-                <FindBlock as='main'>
-                <FindText>Nothing was finded :(</FindText>
-                    <img src={nothing} alt='nothing is found'/>
-                </FindBlock>
-            </main>
-        )
-    }
+            {total > 0 ?
+                <MovieList list={movies} location={location} /> :
+                <SearchBlock message={total === 0 ? 'Nothing was finded :(' : 'Type any title of movie'} />
+            }
+        </div>
+    )
 }
 
 export default Movies;

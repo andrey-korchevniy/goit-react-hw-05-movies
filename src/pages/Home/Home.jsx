@@ -1,7 +1,8 @@
-import { ListOfMovies, MovieItem, Poster, Title, H1 } from './Home.styled'
+import { H1 } from './Home.styled'
 import { getMoviesList } from 'api/getMoviesList';
 import { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
+import { MovieList } from 'components/MovieList/MovieList';
 
 const Home = () => {
 
@@ -13,16 +14,10 @@ const Home = () => {
     }, []);
 
     return (
-        <main>
+        <>
             <H1>Trending today</H1>
-            <ListOfMovies as='div'>
-                {trendingList.map(({ id, title, poster_path }) => (
-                    <MovieItem to={`movies/${id}`} key={id} state={{ from: location }}>
-                        <Poster src={poster_path} alt='movie poster' />
-                        <Title>{title}</Title>
-                    </MovieItem>))}
-            </ListOfMovies>
-        </main>
+            <MovieList list={trendingList} location={location} />
+        </>
     )
 }  
 

@@ -1,23 +1,22 @@
 import { Outlet } from 'react-router-dom';
-import { Header, NavList, Container, Spinner } from './Layout.styled.js';
-import { Suspense } from "react";
-import { Button } from 'components/Button/Button';
-import { Grid } from 'react-loader-spinner';
+import { Header, NavList, Container } from './Layout.styled.js';
+import { Nav } from 'components/Nav/Nav';
 
-export const Layout = () => {
+const Layout = () => {
     return (
         <Container>
             <Header>
                 <NavList>
-                    <Button path='/' title='Home' />
-                    <Button path='movies' title='Movies' />
+                    <Nav path='/' title='Home' />
+                    <Nav path='movies' title='Movies' />
                 </NavList>
             </Header>
-            <Suspense fallback={<Spinner><Grid color="#0591ba" height={35} width={35} /></Spinner>}>
+            <main >
                 <Outlet />
-            </Suspense>
+            </main>
         </Container>
     )
 }
 
+export default Layout;
 

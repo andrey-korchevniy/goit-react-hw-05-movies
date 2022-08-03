@@ -1,6 +1,6 @@
-import { BackLink } from "./Button.styled";
+import { BackLink } from "./Nav.styled";
 
-export const Button = ({ path, title }) => {
+export const Nav = ({ path, title }) => {
     return (
         <BackLink to={path}>
             {title}
