@@ -1,4 +1,5 @@
 import { Wrapper, Img, Info } from "pages/Movies/MovieDetails/MovieDetails.styled";
+import PropTypes from 'prop-types';
 
 export const MovieInfo = ({ data }) => {
     const { poster_path, title, release_date, vote_average, overview, genres } = data;
@@ -16,4 +17,8 @@ export const MovieInfo = ({ data }) => {
             </Info>
         </Wrapper>
     )
+}
+
+MovieInfo.propTypes = {
+  data: PropTypes.object
 }

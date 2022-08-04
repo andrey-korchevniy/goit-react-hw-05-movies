@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Info } from "components/MovieDetailAction/MovieDetailAction.styled";
+import PropTypes from 'prop-types';
 
-export const MovieDetailAction = ({location}) => {
+export const MovieDetailAction = ({ location }) => {
     return (
         <Info>
             <h4>Additional information</h4>
@@ -11,4 +12,8 @@ export const MovieDetailAction = ({location}) => {
             </ul>
         </Info>
     )
+}
+
+MovieDetailAction.propTypes = {
+  location: PropTypes.object
 }

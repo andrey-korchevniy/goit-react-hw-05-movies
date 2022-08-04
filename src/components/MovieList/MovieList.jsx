@@ -1,5 +1,5 @@
 import { ListOfMovies, MovieItem, Poster, Title } from './MovieList.styled';
-
+import PropTypes from 'prop-types';
 
 export const MovieList = ({ list, location, pagePath }) => {
     return (
@@ -11,4 +11,10 @@ export const MovieList = ({ list, location, pagePath }) => {
                 </MovieItem>))}
         </ListOfMovies>
     )
+}
+
+MovieList.propTypes = {
+    list: PropTypes.array,
+    location: PropTypes.object,
+    pagePath: PropTypes.string
 }
