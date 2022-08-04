@@ -3,7 +3,7 @@ import bg from 'images/bg.png';
 
 export const Container = styled.div`
   max-width: 960px;
-  margin: 80px auto;
+  margin: 150px auto;
   padding: 0 16px;
 `
 export const Header = styled.header`

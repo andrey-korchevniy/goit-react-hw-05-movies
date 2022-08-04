@@ -1,22 +1,21 @@
-import { H1 } from './Home.styled'
+import { H1 } from './Home.styled';
 import { getMoviesList } from 'api/getMoviesList';
 import { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import { MovieList } from 'components/MovieList/MovieList';
 
 const Home = () => {
-
-    const [trendingList, setTrendingList] = useState([]);       // API trending list
+    const [trendList, setTrendList] = useState([]);       // API trending list
     const location = useLocation();
 
     useEffect(() => {
-        getMoviesList().then(setTrendingList).catch('error')
+        getMoviesList().then(setTrendList).catch('error')
     }, []);
 
     return (
         <>
             <H1>Trending today</H1>
-            <MovieList list={trendingList} location={location} />
+            <MovieList list={trendList} location={location} pagePath='movies/' />
         </>
     )
 }  

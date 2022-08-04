@@ -38,7 +38,7 @@ const Movies = () => {
         <div>
             <SearchBar onSearch={onSearch} />
             {total > 0 ?
-                <MovieList list={movies} location={location} /> :
+                <MovieList list={movies} location={location} pagePath='' /> :
                 <SearchBlock message={total === 0 ? 'Nothing was finded :(' : 'Type any title of movie'} />
             }
         </div>

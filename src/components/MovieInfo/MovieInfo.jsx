@@ -1,4 +1,4 @@
-import { Wrapper, Img, Info } from "pages/Movies/MovieDetails/MovieDetails.styled"
+import { Wrapper, Img, Info } from "pages/Movies/MovieDetails/MovieDetails.styled";
 
 export const MovieInfo = ({ data }) => {
     const { poster_path, title, release_date, vote_average, overview, genres } = data;

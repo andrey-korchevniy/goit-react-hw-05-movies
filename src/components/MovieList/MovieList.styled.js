@@ -5,7 +5,7 @@ import { Box } from 'utils/Box';
 export const ListOfMovies = styled(Box)`
     display: flex;
     flex-wrap: wrap;
-    margin-top: 50px;
+    margin-top: 80px;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -15,7 +15,7 @@ export const MovieItem = styled(NavLink)`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: calc((100% - 100px)/5);
+    width: calc((100% - 40px)/5);
     background: none;
     color: black;
     text-align: center;

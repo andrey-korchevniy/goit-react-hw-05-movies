@@ -12,16 +12,14 @@ const Cast = () => {
     }, [movieId])
 
     return (
-        <div>
-            <ul>
-                {cast.map(({id, profile_path, name, character }) => (
-                    <li key={id}>
-                        <Img src={profile_path} alt="actor" />
-                        <p>{name} as {character}</p>
-                    </li>))}
-            </ul>
-        </div>
+        <ul>
+            {cast.map(({id, profile_path, name, character }) => (
+                <li key={id}>
+                    <Img src={profile_path} alt="actor" />
+                    <p>{name} as {character}</p>
+                </li>))}
+        </ul>
     )
 }
 
-export default Cast;
+export default Cast; 
