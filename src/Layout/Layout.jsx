@@ -1,14 +1,13 @@
 import { Outlet } from 'react-router-dom';
-import { Header, NavList, Container } from './Layout.styled.js';
-import { Nav } from 'components/Nav/Nav';
+import { Header, NavList, Container, Nav } from './Layout.styled.js';
 
 const Layout = () => {
     return (
         <Container>
             <Header>
                 <NavList>
-                    <Nav path='/' title='Home' />
-                    <Nav path='movies/' title='Movies' />
+                    <Nav to='/'>Home</Nav>
+                    <Nav to='movies/'>Movies</Nav>
                 </NavList>
             </Header>
             <main >

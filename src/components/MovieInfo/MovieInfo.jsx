@@ -1,4 +1,4 @@
-import { Wrapper, Img, Info } from "pages/Movies/MovieDetails/MovieDetails.styled";
+import { Wrapper, Img, Info } from "components/MovieInfo/MovieInfo.styled";
 import PropTypes from 'prop-types';
 
 export const MovieInfo = ({ data }) => {

@@ -7,3 +7,6 @@ export const Wrapper = styled.div`
 export const Img = styled.img`
     width: 200px;
 `
+export const Info = styled.div`
+    margin: 10px;
+`

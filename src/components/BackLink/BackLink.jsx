@@ -18,7 +18,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
-export const LinkBack = ({ to, children }) => {
+export const BackLink = ({ to, children }) => {
   return (
     <StyledLink to={to}>
       <HiArrowLeft size="24" />
@@ -27,6 +27,6 @@ export const LinkBack = ({ to, children }) => {
   );
 };
 
-LinkBack.propTypes = {
+BackLink.propTypes = {
   children: PropTypes.string,
 }

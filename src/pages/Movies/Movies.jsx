@@ -36,7 +36,7 @@ const Movies = () => {
     // render 1 of 3 options by total-value: = null - only searchbar;  > 0 - list of movies; = 0 - nothing has been found
     return (
         <div>
-            <SearchBar onSearch={onSearch} />
+            <SearchBar onSearch={onSearch} queryText={query} />
             {total > 0 ?
                 <MovieList list={movies} location={location} pagePath='' /> :
                 <SearchBlock message={total === 0 ? 'Nothing was finded :(' : 'Type any title of movie'} />

@@ -2,10 +2,10 @@ import { Formik } from 'formik';
 import { Button, ButtonWrapper, Input, SearchForm, FormikWrapper, Error } from './SearchBar.styled';
 import PropTypes from 'prop-types';
 
-export const SearchBar = ({ onSearch }) => {
+export const SearchBar = ({ onSearch, queryText }) => {
     return (
         <Formik
-            initialValues={{ query: '' }}
+            initialValues={{ query: queryText }}
             onSubmit={onSearch}>
             <FormikWrapper>
                 <SearchForm>

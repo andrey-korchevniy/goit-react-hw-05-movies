@@ -1,7 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Grid } from 'react-loader-spinner';
-import { Spinner } from './App.styled.js';
+import { Spinner } from "components/Spinner/Spinner";
 
 const Layout = lazy(() => import("./Layout/Layout"));
 const Home = lazy(() => import("pages/Home/Home"));
@@ -12,7 +11,7 @@ const Reviews = lazy(() => import("pages/Movies/MovieDetails/Reviews/Reviews"));
 
 export const App = () => {
   return (
-    <Suspense fallback={<Spinner><Grid color="#0591ba" height={35} width={35} /></Spinner>}>
+    <Suspense fallback={<Spinner />}>
       <Routes>
         <Route path='/' element={<Layout />}>                          
           <Route index element={<Home />} />

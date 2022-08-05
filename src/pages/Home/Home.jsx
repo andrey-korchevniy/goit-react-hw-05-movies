@@ -1,8 +1,8 @@
-import { H1 } from './Home.styled';
-import { getMoviesList } from 'api/getMoviesList';
 import { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import { MovieList } from 'components/MovieList/MovieList';
+import { getMoviesList } from 'api/getMoviesList';
+import { H1 } from './Home.styled';
 
 const Home = () => {
     const [trendList, setTrendList] = useState([]);       // API trending list

@@ -1,26 +1,34 @@
-import { useState } from "react";
-import { getMovieInfo } from "api/getMoviesList";
+import { useState, useEffect } from "react";
 import { Outlet, useParams, useLocation } from "react-router-dom";
 import { MovieInfo } from "components/MovieInfo/MovieInfo";
 import { MovieDetailAction } from "components/MovieDetailAction/MovieDetailAction";
-import { LinkBack } from "components/LinkBack/LinkBack";
+import { BackLink } from "components/BackLink/BackLink";
+import { getMovieInfo } from "api/getMoviesList";
 
 const MovieDetails = () => {
     const [movieInfo, setMovieInfo] = useState({});         // API movie info 
     const { movieId } = useParams();                        // the movie id
     const location = useLocation();
-    const backLinkHref = location.state?.from ?? '/';  
+    const [backLinkRef, setBackLinkRef] = useState(undefined)
     const { poster_path } = movieInfo;
 
-    getMovieInfo(movieId).then(setMovieInfo).catch();
+    useEffect(() => {
+        getMovieInfo(movieId).then(setMovieInfo).catch();
+    }, [movieId]);
+
+    useEffect(() => {
+        if (!backLinkRef) {
+            setBackLinkRef(location.state?.from ?? '/')
+        }
+    }, [location, backLinkRef]);
 
     if (poster_path !== undefined) {
         return (
             <>
-                <LinkBack to={backLinkHref} children={`Go back`} />
+                <BackLink to={backLinkRef} children={`Go back`} />
                 <MovieInfo data={movieInfo} />
                 <hr></hr>
-                <MovieDetailAction location={location} />
+                <MovieDetailAction state={{from: location}} />
                 <hr></hr>
                 <Outlet />
             </>
